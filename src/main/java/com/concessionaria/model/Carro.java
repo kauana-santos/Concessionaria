@@ -35,7 +35,7 @@ public class Carro {
     @Column(unique = true)
     private String placa;
 
-    @Column(unique = true)
+    @Column(nullable = false,unique = true)
     private String chassi;
 
     @Column(nullable = false)
