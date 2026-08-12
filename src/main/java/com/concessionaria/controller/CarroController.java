@@ -4,6 +4,7 @@ import com.concessionaria.dto.CarroDto;
 import com.concessionaria.dto.CarroResponseDto;
 import com.concessionaria.service.CarroService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ public class CarroController {
         return ResponseEntity.ok(carroService.listarPorId(id));
     }
 
+    @ApiResponse(responseCode = "201", description = "Carro cadastrado com sucesso")
+    @ApiResponse(responseCode = "400", description = "Dados inválidos")
     @Operation(summary = "Cadastrar carros")
     @PostMapping
     public ResponseEntity<CarroResponseDto> cadastrar(@Valid @RequestBody CarroDto dto) {

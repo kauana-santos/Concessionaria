@@ -12,6 +12,7 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("Concessionaria")
+                        .description("API criada para o gerenciamento de uma concessionaria")
                         .version("1.0.0"));
     }
 }

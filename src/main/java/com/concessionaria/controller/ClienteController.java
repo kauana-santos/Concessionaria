@@ -2,11 +2,10 @@ package com.concessionaria.controller;
 
 import com.concessionaria.dto.ClienteDto;
 import com.concessionaria.dto.ClienteResponseDto;
-import com.concessionaria.model.Carro;
 import com.concessionaria.model.Cliente;
-import com.concessionaria.repository.ClienteRepository;
 import com.concessionaria.service.ClienteService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Tag(name = "Clientes", description = "Cadastre, liste e delete clientes do banco de dados.")
 @RestController
@@ -37,6 +35,8 @@ public class ClienteController {
         return ResponseEntity.ok(clienteService.listarPorId(id));
     }
 
+    @ApiResponse(responseCode = "201", description = "Cliente cadastrado com sucesso")
+    @ApiResponse(responseCode = "400", description = "Dados inválidos")
     @Operation(summary = "Cadastrar clientes")
     @PostMapping
     public ResponseEntity<ClienteResponseDto> cadastrar(@Valid @RequestBody ClienteDto dto){
