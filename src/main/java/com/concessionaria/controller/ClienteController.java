@@ -7,6 +7,7 @@ import com.concessionaria.model.Cliente;
 import com.concessionaria.repository.ClienteRepository;
 import com.concessionaria.service.ClienteService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Clientes", description = "Cadastre, liste e delete clientes do banco de dados.")
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {

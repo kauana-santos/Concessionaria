@@ -88,7 +88,7 @@ public class CarroService {
 
     public void deletarCarro(Long id){
         Carro carro = carroRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Carro não encontrado"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Carro não encontrado"));
 
         carroRepository.delete(carro);
     }

@@ -3,6 +3,7 @@ package com.concessionaria.service;
 import com.concessionaria.dto.CarroResponseDto;
 import com.concessionaria.dto.ClienteDto;
 import com.concessionaria.dto.ClienteResponseDto;
+import com.concessionaria.exception.RecursoNaoEncontradoException;
 import com.concessionaria.exception.RegistroDuplicadoException;
 import com.concessionaria.model.Cliente;
 import com.concessionaria.repository.ClienteRepository;
@@ -24,7 +25,7 @@ public class ClienteService {
 
     public ClienteResponseDto listarPorId(Long id){
         Cliente cliente = clienteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Cliente não encontrado"));
 
         return toResponse(cliente);
     }
@@ -34,7 +35,7 @@ public class ClienteService {
         if (clienteRepository.existsByCpf(dto.cpf())) {
             throw new RegistroDuplicadoException(
                     "cpf",
-                    "Este CPF já está cadastrado."
+                    "CPF já está cadastrado."
             );
         }
 

@@ -2,9 +2,9 @@ package com.concessionaria.controller;
 
 import com.concessionaria.dto.CarroDto;
 import com.concessionaria.dto.CarroResponseDto;
-import com.concessionaria.model.Carro;
 import com.concessionaria.service.CarroService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Veículos", description = "Cadastre, liste e delete veículos do banco de dados.")
 @RestController
 @RequestMapping("/api/concessionaria")
 public class CarroController {
@@ -40,7 +41,7 @@ public class CarroController {
     }
     @Operation(summary = "Deletar carros")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Carro> deletar(@PathVariable Long id){
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
         carroService.deletarCarro(id);
         return ResponseEntity.noContent().build();
     }
