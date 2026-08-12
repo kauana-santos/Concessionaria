@@ -23,8 +23,13 @@ public class CarroController {
 
     @GetMapping
     @Operation(summary = "Listar todos os carros")
-    public ResponseEntity<List<CarroResponseDto>> listarTodos(){
-        return ResponseEntity.ok(carroService.listarTodos());
+    public ResponseEntity<List<CarroResponseDto>> listarTodos(
+            @RequestParam(required = false) String cor,
+            @RequestParam(required = false) Integer ano) {
+
+        return ResponseEntity.ok(
+                carroService.listarTodos(cor, ano)
+        );
     }
 
     @Operation(summary = "Listar carros por id")

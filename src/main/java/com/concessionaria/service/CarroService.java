@@ -16,9 +16,24 @@ public class CarroService {
     @Autowired
     private CarroRepository carroRepository;
 
-    public List<CarroResponseDto> listarTodos(){
-        return carroRepository.findAll()
-                .stream()
+    public List<CarroResponseDto> listarTodos(String cor, Integer ano) {
+
+        List<Carro> carros;
+
+        if (cor != null && ano != null) {
+            carros = carroRepository.findByFiltros(cor, ano);
+
+        } else if (cor != null) {
+            carros = carroRepository.findByFiltros(cor, null);
+
+        } else if (ano != null) {
+            carros = carroRepository.findByFiltros(null, ano);
+
+        } else {
+            carros = carroRepository.findByFiltros(null, null);
+        }
+
+        return carros.stream()
                 .map(this::toResponse)
                 .toList();
     }
